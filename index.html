@@ -3,12 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
-  <title>Admin Dashboard - IMPACT Global Academy</title>
+  <meta name="description" content="Equipping Leaders for Global Transformation. IMPACT Global Academy offers premium leadership and business acceleration programmes.">
+  <meta name="keywords" content="Leadership Development, Business Programs, Training, Capacity Building, Africa">
+  <meta property="og:title" content="IMPACT Global Academy - Equipping Leaders for Global Transformation">
+  <meta property="og:description" content="Premium leadership and business acceleration programmes transforming leaders worldwide.">
+  <meta property="og:image" content="/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>IMPACT Global Academy - Equipping Leaders for Global Transformation</title>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/admin/admin-style.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
-<body data-page="admin-dashboard">
+<body data-page="homepage">
   <!-- Notification Container -->
   <div id="notificationContainer" style="position: fixed; top: var(--spacing-xl); right: var(--spacing-xl); z-index: 3000; max-width: 400px;"></div>
 
@@ -30,495 +35,297 @@
     font-weight: 600;
   " class="hidden"></div>
 
-  <!-- Admin Layout -->
-  <div class="admin-layout">
-    <!-- Sidebar -->
-    <aside class="admin-sidebar">
-      <div class="sidebar-header">
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <a href="/" class="logo">
         <div class="logo-icon">I.G.A</div>
-        <h2>IMPACT Admin</h2>
-      </div>
+        <span>IMPACT Global</span>
+      </a>
 
-      <nav class="sidebar-nav">
-        <a href="#" data-page="dashboard" class="nav-item active">
-          <span class="icon">📊</span> Dashboard
-        </a>
-        <a href="#" data-page="programmes" class="nav-item">
-          <span class="icon">📚</span> Programmes
-        </a>
-        <a href="#" data-page="faculty" class="nav-item">
-          <span class="icon">👥</span> Faculty
-        </a>
-        <a href="#" data-page="events" class="nav-item">
-          <span class="icon">📅</span> Events
-        </a>
-        <a href="#" data-page="resources" class="nav-item">
-          <span class="icon">📖</span> Resources
-        </a>
-        <a href="#" data-page="impact-stories" class="nav-item">
-          <span class="icon">⭐</span> Impact Stories
-        </a>
-        <a href="#" data-page="contact" class="nav-item">
-          <span class="icon">💬</span> Contact Submissions
-        </a>
-        <a href="#" data-page="users" class="nav-item">
-          <span class="icon">👤</span> Users
-        </a>
-        <a href="#" data-page="newsletter" class="nav-item">
-          <span class="icon">📧</span> Newsletter
-        </a>
-        <a href="#" data-page="analytics" class="nav-item">
-          <span class="icon">📈</span> Analytics
-        </a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/programmes.html">Programmes</a>
+        <a href="/contact.html">Contact</a>
       </nav>
 
-      <div class="sidebar-footer">
-        <button id="logoutBtn" class="btn btn-danger btn-sm" style="width: 100%;">Sign Out</button>
-      </div>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="admin-main">
-      <!-- Top Bar -->
-      <div class="admin-topbar">
-        <h1 id="pageTitle">Dashboard</h1>
-        <div class="topbar-actions">
-          <div class="dropdown">
-            <button class="user-menu-btn">
-              👤 <span id="userName">Admin</span>
-            </button>
-            <div class="dropdown-menu" id="userMenu">
-              <a href="#" onclick="editProfile()">Edit Profile</a>
-              <a href="#" onclick="changePassword()">Change Password</a>
-              <div class="dropdown-divider"></div>
-              <button onclick="handleAdminLogout()">Sign Out</button>
-            </div>
-          </div>
-        </div>
+      <div class="nav-buttons">
+        <a href="/login.html" class="btn btn-outline btn-sm">Sign In</a>
+        <a href="/register.html" class="btn btn-primary btn-sm">Create Account</a>
       </div>
 
-      <!-- Page Content -->
-      <div class="admin-content">
-        <!-- Dashboard Page -->
-        <div id="dashboard" class="admin-page active">
-          <div class="grid grid-4">
-            <div class="card stat-card">
-              <div class="stat-icon" style="background-color: #dbeafe;">📊</div>
-              <div class="stat-content">
-                <div class="stat-value" id="totalUsers">0</div>
-                <div class="stat-label">Total Users</div>
-              </div>
-            </div>
-
-            <div class="card stat-card">
-              <div class="stat-icon" style="background-color: #fef3c7;">📚</div>
-              <div class="stat-content">
-                <div class="stat-value" id="totalProgrammes">0</div>
-                <div class="stat-label">Programmes</div>
-              </div>
-            </div>
-
-            <div class="card stat-card">
-              <div class="stat-icon" style="background-color: #dcfce7;">👥</div>
-              <div class="stat-content">
-                <div class="stat-value" id="totalEnrolments">0</div>
-                <div class="stat-label">Total Enrolments</div>
-              </div>
-            </div>
-
-            <div class="card stat-card">
-              <div class="stat-icon" style="background-color: #f3e8ff;">💬</div>
-              <div class="stat-content">
-                <div class="stat-value" id="contactSubmissions">0</div>
-                <div class="stat-label">Contact Msgs</div>
-              </div>
-            </div>
-          </div>
-
-          <div style="margin-top: var(--spacing-2xl);">
-            <div class="card">
-              <div class="card-header">
-                <h2>Quick Actions</h2>
-              </div>
-              <div class="card-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-lg);">
-                <button class="btn btn-primary" onclick="goToPage('programmes')">+ Add Programme</button>
-                <button class="btn btn-secondary" onclick="goToPage('faculty')">+ Add Faculty</button>
-                <button class="btn btn-primary" onclick="goToPage('events')">+ Create Event</button>
-                <button class="btn btn-secondary" onclick="goToPage('impact-stories')">+ Add Story</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Programmes Page -->
-        <div id="programmes" class="admin-page">
-          <div class="page-header">
-            <h2>Manage Programmes</h2>
-            <button class="btn btn-primary" onclick="openProgrammeForm()">+ Add Programme</button>
-          </div>
-
-          <div class="card">
-            <div class="table-responsive">
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th>Category</th>
-                    <th>Duration</th>
-                    <th>Price (USD)</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="programmesTable">
-                  <tr><td colspan="6" style="text-align: center; padding: var(--spacing-2xl);">Loading...</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- Faculty Page -->
-        <div id="faculty" class="admin-page">
-          <div class="page-header">
-            <h2>Manage Faculty</h2>
-            <button class="btn btn-primary" onclick="openFacultyForm()">+ Add Faculty</button>
-          </div>
-
-          <div class="card">
-            <div class="table-responsive">
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Title</th>
-                    <th>Expertise</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="facultyTable">
-                  <tr><td colspan="4" style="text-align: center; padding: var(--spacing-2xl);">Loading...</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- Events Page -->
-        <div id="events" class="admin-page">
-          <div class="page-header">
-            <h2>Manage Events</h2>
-            <button class="btn btn-primary" onclick="openEventForm()">+ Add Event</button>
-          </div>
-
-          <div class="card">
-            <div class="table-responsive">
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th>Date</th>
-                    <th>Format</th>
-                    <th>Location</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="eventsTable">
-                  <tr><td colspan="5" style="text-align: center; padding: var(--spacing-2xl);">Loading...</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- Resources Page -->
-        <div id="resources" class="admin-page">
-          <div class="page-header">
-            <h2>Manage Resources</h2>
-            <button class="btn btn-primary" onclick="openResourceForm()">+ Add Resource</button>
-          </div>
-
-          <div class="card">
-            <div class="table-responsive">
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th>Category</th>
-                    <th>Type</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="resourcesTable">
-                  <tr><td colspan="4" style="text-align: center; padding: var(--spacing-2xl);">Loading...</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- Impact Stories Page -->
-        <div id="impact-stories" class="admin-page">
-          <div class="page-header">
-            <h2>Manage Impact Stories</h2>
-            <button class="btn btn-primary" onclick="openStoryForm()">+ Add Story</button>
-          </div>
-
-          <div class="card">
-            <div class="table-responsive">
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Published</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="storiesTable">
-                  <tr><td colspan="4" style="text-align: center; padding: var(--spacing-2xl);">Loading...</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- Contact Submissions Page -->
-        <div id="contact" class="admin-page">
-          <div class="page-header">
-            <h2>Contact Submissions</h2>
-            <button class="btn btn-secondary" onclick="exportContacts()">Export</button>
-          </div>
-
-          <div class="card">
-            <div class="table-responsive">
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Subject</th>
-                    <th>Status</th>
-                    <th>Date</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="contactTable">
-                  <tr><td colspan="6" style="text-align: center; padding: var(--spacing-2xl);">Loading...</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- Users Page -->
-        <div id="users" class="admin-page">
-          <div class="page-header">
-            <h2>Manage Users</h2>
-          </div>
-
-          <div class="card">
-            <div class="table-responsive">
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Joined</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="usersTable">
-                  <tr><td colspan="5" style="text-align: center; padding: var(--spacing-2xl);">Loading...</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- Newsletter Page -->
-        <div id="newsletter" class="admin-page">
-          <div class="page-header">
-            <h2>Newsletter Management</h2>
-            <div>
-              <button class="btn btn-secondary" onclick="exportNewsletter()">Export Subscribers</button>
-            </div>
-          </div>
-
-          <div class="grid grid-2" style="margin-bottom: var(--spacing-2xl);">
-            <div class="card stat-card">
-              <div class="stat-icon" style="background-color: #dbeafe;">📧</div>
-              <div class="stat-content">
-                <div class="stat-value" id="subscriberCount">0</div>
-                <div class="stat-label">Active Subscribers</div>
-              </div>
-            </div>
-
-            <div class="card stat-card">
-              <div class="stat-icon" style="background-color: #fecaca;">🚫</div>
-              <div class="stat-content">
-                <div class="stat-value" id="unsubscribedCount">0</div>
-                <div class="stat-label">Unsubscribed</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <h3>Recent Subscribers</h3>
-            </div>
-            <div class="table-responsive">
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>Email</th>
-                    <th>Full Name</th>
-                    <th>Subscribed Date</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="subscribersTable">
-                  <tr><td colspan="5" style="text-align: center; padding: var(--spacing-2xl);">Loading...</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- Analytics Page -->
-        <div id="analytics" class="admin-page">
-          <h2>Analytics Dashboard</h2>
-
-          <div class="grid grid-4" style="margin-bottom: var(--spacing-2xl);">
-            <div class="card stat-card">
-              <div class="stat-icon" style="background-color: #dbeafe;">👤</div>
-              <div class="stat-content">
-                <div class="stat-value" id="analyticsUsers">0</div>
-                <div class="stat-label">Total Users</div>
-              </div>
-            </div>
-
-            <div class="card stat-card">
-              <div class="stat-icon" style="background-color: #fef3c7;">📚</div>
-              <div class="stat-content">
-                <div class="stat-value" id="analyticsProgrammes">0</div>
-                <div class="stat-label">Programmes</div>
-              </div>
-            </div>
-
-            <div class="card stat-card">
-              <div class="stat-icon" style="background-color: #dcfce7;">✓</div>
-              <div class="stat-content">
-                <div class="stat-value" id="analyticsEnrolments">0</div>
-                <div class="stat-label">Total Enrolments</div>
-              </div>
-            </div>
-
-            <div class="card stat-card">
-              <div class="stat-icon" style="background-color: #f3e8ff;">📝</div>
-              <div class="stat-content">
-                <div class="stat-value" id="analyticsContacts">0</div>
-                <div class="stat-label">Contact Submissions</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <h3>System Information</h3>
-            </div>
-            <div class="card-content">
-              <div style="display: grid; grid-template-columns: 200px 1fr; gap: var(--spacing-lg);">
-                <strong>Last Updated:</strong>
-                <span id="lastUpdated">-</span>
-
-                <strong>Admin Version:</strong>
-                <span>v1.0.0</span>
-
-                <strong>Database:</strong>
-                <span>Firebase Firestore</span>
-
-                <strong>Authentication:</strong>
-                <span>Firebase Auth</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
-
-  <!-- Modals -->
-  <!-- Programme Form Modal -->
-  <div id="programmeModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Add/Edit Programme</h2>
-        <button class="modal-close" onclick="closeModal('programmeModal')">×</button>
-      </div>
-      <form id="programmeForm" onsubmit="saveProgramme(event)">
-        <div class="form-group">
-          <label>Title *</label>
-          <input type="text" name="title" required>
-        </div>
-        <div class="form-group">
-          <label>Category *</label>
-          <select name="category" required>
-            <option value="">Select Category</option>
-            <option value="LAP">Leadership Acceleration Program</option>
-            <option value="CAP">Campus Activation Program</option>
-            <option value="BAP">Business Acceleration Program</option>
-            <option value="SPECIALIZED">Specialized Programme</option>
-            <option value="MAP">Mission & Ministry Programs</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Short Description *</label>
-          <textarea name="shortDescription" required></textarea>
-        </div>
-        <div class="form-group">
-          <label>Full Description *</label>
-          <textarea name="description" required></textarea>
-        </div>
-        <div class="form-group">
-          <label>Duration (weeks) *</label>
-          <input type="number" name="durationWeeks" min="1" required>
-        </div>
-        <div class="form-group">
-          <label>Price (USD) *</label>
-          <input type="number" name="investmentUsd" min="0" step="0.01" required>
-        </div>
-        <div class="form-group">
-          <label>Price (NGN) *</label>
-          <input type="number" name="investmentNgn" min="0" step="0.01" required>
-        </div>
-        <div class="form-group">
-          <label>Image URL</label>
-          <input type="url" name="imageUrl">
-        </div>
-        <div class="form-group">
-          <label>Status *</label>
-          <select name="status" required>
-            <option value="draft">Draft</option>
-            <option value="published">Published</option>
-            <option value="archived">Archived</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>
-            <input type="checkbox" name="featured">
-            Featured Programme
-          </label>
-        </div>
-        <div style="display: flex; gap: var(--spacing-lg);">
-          <button type="submit" class="btn btn-primary">Save Programme</button>
-          <button type="button" class="btn btn-ghost" onclick="closeModal('programmeModal')">Cancel</button>
-        </div>
-      </form>
+      <button class="mobile-menu-btn">☰</button>
     </div>
-  </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="badge badge-secondary" style="margin-bottom: var(--spacing-lg);">Welcome to IMPACT Global Academy</div>
+          <h1>Equipping Leaders for Global Transformation</h1>
+          <p>Join hundreds of leaders worldwide in transforming their leadership capabilities through our premium, transformational programmes designed for intentional mastery and global impact.</p>
+          
+          <div class="hero-buttons">
+            <a href="/programmes.html" class="btn btn-secondary btn-lg">Explore Programmes</a>
+            <a href="/contact.html" class="btn btn-outline btn-lg">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- I.M.P.A.C.T. Framework Section -->
+    <section class="section section-light">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: var(--spacing-3xl);">
+          <h2>The I.M.P.A.C.T. Framework</h2>
+          <p style="color: var(--gray-600); font-size: var(--font-size-lg);">Our core pillars guiding every programme and interaction</p>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="card">
+            <div style="font-size: 48px; margin-bottom: var(--spacing-lg);">🎯</div>
+            <h3>Intentional Mastery</h3>
+            <p>Deliberate, purposeful development of leadership skills and competencies</p>
+          </div>
+
+          <div class="card">
+            <div style="font-size: 48px; margin-bottom: var(--spacing-lg);">🚀</div>
+            <h3>Mastery for Purpose</h3>
+            <p>Developing leaders with clear purpose and vision for their organizations</p>
+          </div>
+
+          <div class="card">
+            <div style="font-size: 48px; margin-bottom: var(--spacing-lg);">📈</div>
+            <h3>Advancement</h3>
+            <p>Accelerating your career trajectory and professional growth</p>
+          </div>
+
+          <div class="card">
+            <div style="font-size: 48px; margin-bottom: var(--spacing-lg);">🎓</div>
+            <h3>Capacity Building</h3>
+            <p>Strengthening organizational and individual capabilities</p>
+          </div>
+
+          <div class="card">
+            <div style="font-size: 48px; margin-bottom: var(--spacing-lg);">✨</div>
+            <h3>Transformation</h3>
+            <p>Creating lasting, meaningful change in leadership and impact</p>
+          </div>
+
+          <div class="card">
+            <div style="font-size: 48px; margin-bottom: var(--spacing-lg);">🌍</div>
+            <h3>Global Impact</h3>
+            <p>Making a difference in communities across Africa and beyond</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- L.I.G.H.T. Values Section -->
+    <section class="section section-dark">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: var(--spacing-3xl);">
+          <h2>Our Core Values - L.I.G.H.T.</h2>
+          <p style="color: rgba(255, 255, 255, 0.9); font-size: var(--font-size-lg);">Guiding every decision and interaction</p>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <h3 style="color: var(--primary-dark);">💼 Leadership with Purpose</h3>
+            <p>We develop leaders who lead with intention, integrity, and vision to transform their spheres of influence.</p>
+          </div>
+
+          <div class="card">
+            <h3 style="color: var(--primary-dark);">💡 Innovation & Growth</h3>
+            <p>We foster continuous learning, creative thinking, and growth mindset in every programme and interaction.</p>
+          </div>
+
+          <div class="card">
+            <h3 style="color: var(--primary-dark);">🌐 Global Impact</h3>
+            <p>We prepare leaders to create positive change in their organizations and communities globally.</p>
+          </div>
+
+          <div class="card">
+            <h3 style="color: var(--primary-dark);">🤝 Holistic Development</h3>
+            <p>We address leadership development from personal, professional, and spiritual dimensions.</p>
+          </div>
+
+          <div class="card" style="grid-column: 1 / -1;">
+            <h3 style="color: var(--primary-dark);">🏆 Transformational Excellence</h3>
+            <p>We commit to excellence in every programme, ensuring measurable transformation in our participants.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Programmes Section -->
+    <section class="section">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: var(--spacing-3xl);">
+          <h2>Our Featured Programmes</h2>
+          <p style="color: var(--gray-600); font-size: var(--font-size-lg);">Transformational learning designed for ambitious leaders</p>
+        </div>
+
+        <div id="programmesGrid" class="grid grid-3">
+          <!-- Programmes loaded by JavaScript -->
+          <div class="card skeleton" style="height: 400px;"></div>
+          <div class="card skeleton" style="height: 400px;"></div>
+          <div class="card skeleton" style="height: 400px;"></div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--spacing-3xl);">
+          <a href="/programmes.html" class="btn btn-primary btn-lg">View All Programmes</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="section section-light">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: var(--spacing-3xl);">
+          <h2>Why Choose IMPACT Global Academy?</h2>
+        </div>
+
+        <div class="grid grid-2">
+          <div style="padding: var(--spacing-xl);">
+            <h3 style="color: var(--secondary-dark); margin-bottom: var(--spacing-lg);">✓ Premium Faculty</h3>
+            <p>Learn from industry experts and thought leaders with years of practical experience in their fields.</p>
+          </div>
+
+          <div style="padding: var(--spacing-xl);">
+            <h3 style="color: var(--secondary-dark); margin-bottom: var(--spacing-lg);">✓ Global Network</h3>
+            <p>Connect with leaders from across Africa and beyond, building lasting professional relationships.</p>
+          </div>
+
+          <div style="padding: var(--spacing-xl);">
+            <h3 style="color: var(--secondary-dark); margin-bottom: var(--spacing-lg);">✓ Practical Application</h3>
+            <p>Apply learning immediately with real-world case studies and hands-on projects.</p>
+          </div>
+
+          <div style="padding: var(--spacing-xl);">
+            <h3 style="color: var(--secondary-dark); margin-bottom: var(--spacing-lg);">✓ Flexible Learning</h3>
+            <p>Choose from online, in-person, and hybrid formats that fit your schedule.</p>
+          </div>
+
+          <div style="padding: var(--spacing-xl);">
+            <h3 style="color: var(--secondary-dark); margin-bottom: var(--spacing-lg);">✓ Proven Results</h3>
+            <p>500+ leaders trained | 50+ programmes delivered | 30+ expert faculty | 15+ countries reached</p>
+          </div>
+
+          <div style="padding: var(--spacing-xl);">
+            <h3 style="color: var(--secondary-dark); margin-bottom: var(--spacing-lg);">✓ Certification</h3>
+            <p>Earn recognized certifications that demonstrate your commitment to leadership excellence.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter CTA Section -->
+    <section class="section" style="background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-700) 100%); color: var(--white);">
+      <div class="container-sm">
+        <div style="text-align: center; margin-bottom: var(--spacing-2xl);">
+          <h2 style="color: var(--white);">Stay Updated with IMPACT</h2>
+          <p style="color: rgba(255, 255, 255, 0.9);">Receive insights, programme updates, and leadership tips directly to your inbox.</p>
+        </div>
+
+        <form id="newsletterForm" style="display: flex; gap: var(--spacing-md); flex-wrap: wrap;">
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Enter your email"
+            required
+            style="flex: 1; min-width: 250px; background: var(--white); color: var(--gray-900);"
+          >
+          <button type="submit" class="btn btn-secondary" style="min-width: 150px;">Subscribe</button>
+        </form>
+
+        <p style="text-align: center; font-size: var(--font-size-sm); margin-top: var(--spacing-lg); opacity: 0.9;">We respect your privacy. Unsubscribe at any time.</p>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section section-light">
+      <div class="container-sm">
+        <div class="card" style="text-align: center; border: 2px solid var(--secondary-dark);">
+          <h2 style="color: var(--secondary-dark); margin-bottom: var(--spacing-lg);">Ready to Transform Your Leadership?</h2>
+          <p style="font-size: var(--font-size-lg); margin-bottom: var(--spacing-2xl);">Join our next cohort and begin your journey of intentional mastery for global impact.</p>
+          
+          <div style="display: flex; gap: var(--spacing-lg); justify-content: center; flex-wrap: wrap;">
+            <a href="/programmes.html" class="btn btn-primary btn-lg">View Programmes</a>
+            <a href="/contact.html" class="btn btn-secondary btn-lg">Schedule a Consultation</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h3>About IMPACT</h3>
+        <p>Equipping Leaders for Global Transformation through premium, intentional leadership development programmes.</p>
+        <div class="social-links">
+          <a href="#linkedin" title="LinkedIn">f</a>
+          <a href="#twitter" title="Twitter">𝕏</a>
+          <a href="#facebook" title="Facebook">f</a>
+          <a href="#instagram" title="Instagram">📷</a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Platform</h3>
+        <ul>
+          <li><a href="/programmes.html">Programmes</a></li>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Learning</h3>
+        <ul>
+          <li><a href="/programmes.html">All Programmes</a></li>
+          <li><a href="/resources">Learning Resources</a></li>
+          <li><a href="/impact-stories">Impact Stories</a></li>
+          <li><a href="/events">Events</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Collaborate</h3>
+        <ul>
+          <li><a href="/partnerships">Partnerships</a></li>
+          <li><a href="/organisations">For Organizations</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/support">Support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:info@impactglobalacademy.com">info@impactglobalacademy.com</a></li>
+          <li><a href="tel:+2348000000000">+234 800 000 0000</a></li>
+          <li><p>Lagos, Nigeria</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-links">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/cookies.html">Cookie Policy</a>
+      </div>
+      <p>&copy; 2024 IMPACT Global Academy. All rights reserved. CAC No: 8558412</p>
+    </div>
+  </footer>
 
   <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
@@ -529,7 +336,6 @@
   <!-- Configuration & APIs -->
   <script src="/config.js"></script>
   <script src="/api.js"></script>
-  <script src="/admin/admin-api.js"></script>
-  <script src="/admin/admin-script.js"></script>
+  <script src="/script.js"></script>
 </body>
 </html>
