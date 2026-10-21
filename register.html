@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Create Account - IMPACT Global Academy</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body data-page="register">
+  <!-- Notification Container -->
+  <div id="notificationContainer" style="position: fixed; top: var(--spacing-xl); right: var(--spacing-xl); z-index: 3000; max-width: 400px;"></div>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="hidden" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    gap: var(--spacing-lg);
+    color: var(--white);
+    font-weight: 600;
+  "></div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <a href="/" class="logo">
+        <div class="logo-icon">I.G.A</div>
+        <span>IMPACT Global</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main style="min-height: 80vh; display: flex; align-items: center;">
+    <div class="container-sm">
+      <div class="card" style="max-width: 600px; margin: 0 auto;">
+        <div style="text-align: center; margin-bottom: var(--spacing-2xl);">
+          <div class="logo-icon" style="width: 60px; height: 60px; font-size: 32px; margin: 0 auto var(--spacing-lg);">I.G.A</div>
+          <h1 style="margin-bottom: var(--spacing-sm);">Create Your Account</h1>
+          <p style="color: var(--gray-600);">Join hundreds of leaders transforming their capabilities and impact</p>
+        </div>
+
+        <form id="registerForm" style="margin-bottom: var(--spacing-lg);">
+          <div class="form-group">
+            <label for="fullName">Full Name *</label>
+            <input type="text" id="fullName" name="fullName" placeholder="John Doe" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password *</label>
+            <input type="password" id="password" name="password" placeholder="••••••••" required>
+            <p style="font-size: var(--font-size-sm); color: var(--gray-600); margin-top: var(--spacing-sm);">
+              At least 6 characters, with uppercase, lowercase, and numbers for security
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password *</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required>
+          </div>
+
+          <div class="form-group">
+            <label style="display: flex; align-items: flex-start; gap: var(--spacing-md);">
+              <input type="checkbox" id="agreeTerms" name="agreeTerms" required style="margin-top: 4px; flex-shrink: 0;">
+              <span>
+                I agree to the <a href="/terms.html" target="_blank">Terms of Service</a> and <a href="/privacy.html" target="_blank">Privacy Policy</a> *
+              </span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: var(--spacing-lg);">
+            Create Account
+          </button>
+        </form>
+
+        <!-- Google Sign-Up -->
+        <div style="text-align: center; margin-bottom: var(--spacing-lg);">
+          <button type="button" onclick="handleGoogleSignUp()" class="btn btn-outline btn-lg" style="width: 100%;">
+            🔷 Sign up with Google
+          </button>
+        </div>
+
+        <div style="text-align: center; padding: var(--spacing-lg); background-color: var(--light); border-radius: var(--radius-lg); border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); margin-bottom: var(--spacing-lg);">
+          <p style="margin: 0;">Already have an account?</p>
+          <a href="/login.html" class="btn btn-ghost" style="margin-top: var(--spacing-md); display: inline-block;">Sign In</a>
+        </div>
+
+        <div style="font-size: var(--font-size-sm); color: var(--gray-600); text-align: center; background-color: var(--primary-50); padding: var(--spacing-lg); border-radius: var(--radius-lg);">
+          <p style="margin: 0; line-height: 1.6;">
+            ✓ Free account creation<br>
+            ✓ Access your personal dashboard<br>
+            ✓ Enrol in programmes instantly<br>
+            ✓ Join our global community of leaders
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-bottom">
+      <p>&copy; 2024 IMPACT Global Academy. All rights reserved. CAC No: 8558412</p>
+    </div>
+  </footer>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js"></script>
+
+  <!-- Configuration & APIs -->
+  <script src="/config.js"></script>
+  <script src="/api.js"></script>
+  <script src="/script.js"></script>
+
+  <script>
+    /**
+     * Handle Google Sign Up
+     */
+    async function handleGoogleSignUp() {
+      try {
+        showLoadingState('Signing up with Google...');
+        const result = await googleSignIn();
+        
+        if (result.success) {
+          showNotification('Account created successfully!', 'success');
+          setTimeout(() => {
+            window.location.href = '/dashboard.html';
+          }, 1500);
+        } else {
+          showNotification(result.error, 'error');
+        }
+      } catch (error) {
+        console.error('Google sign-up error:', error);
+        showNotification('Error signing up with Google', 'error');
+      } finally {
+        hideLoadingState();
+      }
+    }
+  </script>
+</body>
+</html>

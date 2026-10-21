@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Dashboard - IMPACT Global Academy</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body data-page="dashboard">
+  <!-- Notification Container -->
+  <div id="notificationContainer" style="position: fixed; top: var(--spacing-xl); right: var(--spacing-xl); z-index: 3000; max-width: 400px;"></div>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="hidden" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    gap: var(--spacing-lg);
+    color: var(--white);
+    font-weight: 600;
+  "></div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <a href="/" class="logo">
+        <div class="logo-icon">I.G.A</div>
+        <span>IMPACT Global</span>
+      </a>
+
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/programmes.html">Programmes</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-buttons">
+        <a href="/profile.html" class="btn btn-outline btn-sm">My Profile</a>
+        <button onclick="handleLogout()" class="btn btn-primary btn-sm">Sign Out</button>
+      </div>
+
+      <button class="mobile-menu-btn">☰</button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main style="min-height: 80vh;">
+    <!-- Welcome Section -->
+    <section class="hero" style="background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-700) 100%);">
+      <div class="container">
+        <div class="hero-content" style="color: var(--white);">
+          <h1>Welcome, <span id="userNameDisplay">Leader</span>! 👋</h1>
+          <p>Your personalized dashboard to track learning progress and continue your leadership transformation</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard Content -->
+    <section class="section">
+      <div class="container">
+        <!-- Stats Row -->
+        <div class="grid grid-3" style="margin-bottom: var(--spacing-3xl);">
+          <div class="card">
+            <div class="stat-card">
+              <div class="stat-icon" style="background-color: var(--primary-100);">📚</div>
+              <div class="stat-content">
+                <div class="stat-value" id="enrolledCount">0</div>
+                <div class="stat-label">Programmes Enrolled</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="stat-card">
+              <div class="stat-icon" style="background-color: var(--success-100);">✓</div>
+              <div class="stat-content">
+                <div class="stat-value" id="completedCount">0</div>
+                <div class="stat-label">Completed</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="stat-card">
+              <div class="stat-icon" style="background-color: var(--secondary-100);">⏳</div>
+              <div class="stat-content">
+                <div class="stat-value" id="activeCount">0</div>
+                <div class="stat-label">In Progress</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-3" style="gap: var(--spacing-3xl);">
+          <!-- Enrolled Programmes -->
+          <div style="grid-column: 1 / 3;">
+            <h2 style="margin-bottom: var(--spacing-xl);">My Programmes</h2>
+
+            <div id="enrolledProgrammesContainer" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--spacing-lg);">
+              <!-- Enrolled programmes will load here -->
+              <div class="card" style="min-height: 300px; display: flex; align-items: center; justify-content: center; color: var(--gray-500);">
+                <p>Loading your programmes...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <div>
+            <!-- Quick Actions -->
+            <div class="card" style="margin-bottom: var(--spacing-lg);">
+              <h3 style="margin-bottom: var(--spacing-lg); color: var(--secondary-dark);">Quick Actions</h3>
+              
+              <a href="/programmes.html" class="btn btn-primary btn-lg" style="width: 100%; display: block; text-align: center; margin-bottom: var(--spacing-md);">
+                Browse More Programmes
+              </a>
+
+              <a href="/profile.html" class="btn btn-ghost btn-lg" style="width: 100%; display: block; text-align: center; margin-bottom: var(--spacing-md);">
+                Edit Profile
+              </a>
+
+              <a href="/contact.html" class="btn btn-ghost btn-lg" style="width: 100%; display: block; text-align: center;">
+                Contact Support
+              </a>
+            </div>
+
+            <!-- Learning Resources -->
+            <div class="card">
+              <h3 style="margin-bottom: var(--spacing-lg);">Learning Resources</h3>
+              
+              <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+                <a href="#" style="padding: var(--spacing-md); background-color: var(--light); border-radius: var(--radius-lg); text-decoration: none; color: var(--primary-dark); transition: all var(--transition-fast);" onmouseover="this.style.backgroundColor='var(--gray-200)'" onmouseout="this.style.backgroundColor='var(--light)'">
+                  <strong>📖 Resource Library</strong>
+                  <p style="font-size: var(--font-size-sm); color: var(--gray-600); margin: var(--spacing-sm) 0 0 0;">Access all learning materials</p>
+                </a>
+
+                <a href="#" style="padding: var(--spacing-md); background-color: var(--light); border-radius: var(--radius-lg); text-decoration: none; color: var(--primary-dark); transition: all var(--transition-fast);" onmouseover="this.style.backgroundColor='var(--gray-200)'" onmouseout="this.style.backgroundColor='var(--light)'">
+                  <strong>🎥 Video Library</strong>
+                  <p style="font-size: var(--font-size-sm); color: var(--gray-600); margin: var(--spacing-sm) 0 0 0;">Watch recorded sessions</p>
+                </a>
+
+                <a href="#" style="padding: var(--spacing-md); background-color: var(--light); border-radius: var(--radius-lg); text-decoration: none; color: var(--primary-dark); transition: all var(--transition-fast);" onmouseover="this.style.backgroundColor='var(--gray-200)'" onmouseout="this.style.backgroundColor='var(--light)'">
+                  <strong>💬 Community</strong>
+                  <p style="font-size: var(--font-size-sm); color: var(--gray-600); margin: var(--spacing-sm) 0 0 0;">Connect with other leaders</p>
+                </a>
+              </div>
+            </div>
+
+            <!-- Progress Tips -->
+            <div class="card" style="margin-top: var(--spacing-lg); background-color: var(--primary-50); border-color: var(--primary-200);">
+              <h3 style="margin-bottom: var(--spacing-lg); color: var(--primary-dark);">💡 Pro Tips</h3>
+              
+              <ul style="list-style: none; padding: 0; color: var(--gray-700); font-size: var(--font-size-sm);">
+                <li style="margin-bottom: var(--spacing-md);">✓ Schedule dedicated study time each week</li>
+                <li style="margin-bottom: var(--spacing-md);">✓ Engage in discussion forums</li>
+                <li style="margin-bottom: var(--spacing-md);">✓ Complete all activities for certification</li>
+                <li>✓ Download resources for offline access</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recommended Programmes -->
+    <section class="section section-light">
+      <div class="container">
+        <h2 style="margin-bottom: var(--spacing-xl);">Recommended for You</h2>
+        
+        <div id="recommendedContainer" class="grid grid-3">
+          <!-- Recommended programmes will load here -->
+        </div>
+
+        <div style="text-align: center; margin-top: var(--spacing-2xl);">
+          <a href="/programmes.html" class="btn btn-primary btn-lg">View All Programmes</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h3>About IMPACT</h3>
+        <p>Equipping Leaders for Global Transformation through premium, intentional leadership development programmes.</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Platform</h3>
+        <ul>
+          <li><a href="/programmes.html">Programmes</a></li>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/dashboard.html">Dashboard</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Learning</h3>
+        <ul>
+          <li><a href="/programmes.html">All Programmes</a></li>
+          <li><a href="#">Resources</a></li>
+          <li><a href="#">Impact Stories</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Account</h3>
+        <ul>
+          <li><a href="/profile.html">My Profile</a></li>
+          <li><a href="/contact.html">Support</a></li>
+          <li><a href="#" onclick="handleLogout()">Sign Out</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:info@impactglobalacademy.com">info@impactglobalacademy.com</a></li>
+          <li><a href="tel:+2348000000000">+234 800 000 0000</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024 IMPACT Global Academy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js"></script>
+
+  <!-- Configuration & APIs -->
+  <script src="/config.js"></script>
+  <script src="/api.js"></script>
+  <script src="/script.js"></script>
+
+  <script>
+    /**
+     * Load dashboard data on page load
+     */
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        // Check authentication
+        const user = await getCurrentUser();
+        if (!user) {
+          showNotification('Please sign in to access your dashboard', 'info');
+          setTimeout(() => {
+            window.location.href = '/login.html';
+          }, 1500);
+          return;
+        }
+
+        // Display user name
+        document.getElementById('userNameDisplay').textContent = user.fullName || user.email.split('@')[0];
+
+        // Load enrolled programmes
+        await loadUserProgrammes();
+      } catch (error) {
+        console.error('Dashboard error:', error);
+        showNotification('Error loading dashboard', 'error');
+      }
+    });
+
+    /**
+     * Load user's enrolled programmes
+     */
+    async function loadUserProgrammes() {
+      try {
+        showLoadingState('Loading your programmes...');
+        const user = await getCurrentUser();
+        
+        const result = await getUserEnrolments(user.uid);
+
+        if (result.success) {
+          const enrolments = result.data;
+          
+          // Count stats
+          const active = enrolments.filter(e => e.status === 'active').length;
+          const completed = enrolments.filter(e => e.status === 'completed').length;
+
+          document.getElementById('enrolledCount').textContent = enrolments.length;
+          document.getElementById('completedCount').textContent = completed;
+          document.getElementById('activeCount').textContent = active;
+
+          if (enrolments.length === 0) {
+            document.getElementById('enrolledProgrammesContainer').innerHTML = `
+              <div class="card" style="grid-column: 1 / -1; text-align: center; padding: var(--spacing-3xl);">
+                <h3 style="margin-bottom: var(--spacing-lg); color: var(--gray-600);">No Programmes Yet</h3>
+                <p style="color: var(--gray-600); margin-bottom: var(--spacing-lg);">You haven't enrolled in any programmes yet. Explore our library to get started.</p>
+                <a href="/programmes.html" class="btn btn-primary">Browse Programmes</a>
+              </div>
+            `;
+            return;
+          }
+
+          // Render enrolled programmes
+          let html = '';
+          for (const enrolment of enrolments) {
+            const prog = await getProgrammeById(enrolment.programmeId);
+            if (prog.success) {
+              const programme = prog.data;
+              html += `
+                <div class="card" style="display: flex; flex-direction: column;">
+                  <div style="flex: 1;">
+                    <span class="badge badge-${enrolment.status === 'completed' ? 'success' : 'primary'}" style="margin-bottom: var(--spacing-md);">
+                      ${enrolment.status.charAt(0).toUpperCase() + enrolment.status.slice(1)}
+                    </span>
+                    <h3 style="margin-bottom: var(--spacing-md);">${programme.title}</h3>
+                    <p style="color: var(--gray-600); font-size: var(--font-size-sm); margin-bottom: var(--spacing-lg);">
+                      ${programme.shortDescription}
+                    </p>
+                  </div>
+                  
+                  <div style="display: flex; gap: var(--spacing-md);">
+                    <a href="/programme-detail.html?id=${programme.id}" class="btn btn-outline btn-sm">View Details</a>
+                    <button onclick="continueProgramme('${programme.id}')" class="btn btn-primary btn-sm">Continue Learning</button>
+                  </div>
+                </div>
+              `;
+            }
+          }
+          document.getElementById('enrolledProgrammesContainer').innerHTML = html || '<p>No programmes found</p>';
+        } else {
+          showNotification(result.error, 'error');
+        }
+      } catch (error) {
+        console.error('Error loading programmes:', error);
+        showNotification('Error loading your programmes', 'error');
+      } finally {
+        hideLoadingState();
+      }
+    }
+
+    /**
+     * Continue to programme learning
+     */
+    function continueProgramme(programmeId) {
+      showNotification('Opening programme...', 'info');
+      setTimeout(() => {
+        window.location.href = `/programme-detail.html?id=${programmeId}`;
+      }, 500);
+    }
+  </script>
+</body>
+</html>

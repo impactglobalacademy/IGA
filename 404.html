@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found - IMPACT Global Academy</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body data-page="404">
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <a href="/" class="logo">
+        <div class="logo-icon">I.G.A</div>
+        <span>IMPACT Global</span>
+      </a>
+
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/programmes.html">Programmes</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+
+      <button class="mobile-menu-btn">☰</button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main style="min-height: 80vh; display: flex; align-items: center;">
+    <div class="container-sm">
+      <div class="card" style="text-align: center; padding: var(--spacing-3xl);">
+        <!-- 404 Display -->
+        <div style="font-size: 120px; font-weight: 700; color: var(--secondary-dark); margin-bottom: var(--spacing-lg); line-height: 1;">
+          404
+        </div>
+
+        <h1 style="margin-bottom: var(--spacing-lg);">Page Not Found</h1>
+
+        <p style="font-size: var(--font-size-lg); color: var(--gray-600); margin-bottom: var(--spacing-2xl); line-height: 1.6;">
+          We couldn't find the page you're looking for. It may have been moved, deleted, or the link might be broken.
+        </p>
+
+        <!-- Navigation Options -->
+        <div style="display: flex; flex-direction: column; gap: var(--spacing-lg); margin-bottom: var(--spacing-3xl); max-width: 400px; margin-left: auto; margin-right: auto;">
+          <a href="/" class="btn btn-primary btn-lg">← Go to Home</a>
+          <a href="/programmes.html" class="btn btn-secondary btn-lg">Browse Programmes</a>
+          <a href="/contact.html" class="btn btn-ghost btn-lg">Contact Support</a>
+        </div>
+
+        <!-- Helpful Info -->
+        <div style="background-color: var(--light); padding: var(--spacing-2xl); border-radius: var(--radius-xl); border-left: 4px solid var(--secondary-dark);">
+          <h3 style="margin-bottom: var(--spacing-lg); color: var(--secondary-dark);">What You Might Be Looking For</h3>
+          
+          <div style="text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg);">
+            <div>
+              <h4 style="margin-bottom: var(--spacing-sm);">📚 Programmes</h4>
+              <a href="/programmes.html" style="color: var(--primary-600); text-decoration: none;">Browse all programmes →</a>
+            </div>
+
+            <div>
+              <h4 style="margin-bottom: var(--spacing-sm);">ℹ️ About Us</h4>
+              <a href="/about.html" style="color: var(--primary-600); text-decoration: none;">Learn more about IGA →</a>
+            </div>
+
+            <div>
+              <h4 style="margin-bottom: var(--spacing-sm);">💬 Contact</h4>
+              <a href="/contact.html" style="color: var(--primary-600); text-decoration: none;">Get in touch →</a>
+            </div>
+
+            <div>
+              <h4 style="margin-bottom: var(--spacing-sm);">👤 Account</h4>
+              <a href="/login.html" style="color: var(--primary-600); text-decoration: none;">Sign in →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search Alternative -->
+        <div style="margin-top: var(--spacing-3xl); padding-top: var(--spacing-2xl); border-top: 1px solid var(--gray-200);">
+          <p style="color: var(--gray-600); margin-bottom: var(--spacing-lg);">Try searching for what you're looking for:</p>
+          
+          <form onsubmit="handleSearch(event)" style="display: flex; gap: var(--spacing-md);">
+            <input 
+              type="text" 
+              placeholder="Search..." 
+              style="flex: 1; padding: var(--spacing-md); border: 2px solid var(--gray-200); border-radius: var(--radius-lg); font-size: var(--font-size-base);"
+            >
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-bottom">
+      <p>&copy; 2024 IMPACT Global Academy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function handleSearch(e) {
+      e.preventDefault();
+      const query = e.target.querySelector('input').value;
+      if (query) {
+        window.location.href = `/programmes.html?search=${encodeURIComponent(query)}`;
+      }
+    }
+  </script>
+</body>
+</html>

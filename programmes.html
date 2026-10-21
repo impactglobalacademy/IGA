@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse all IMPACT Global Academy leadership development programmes. From LAP to BAP to specialized programmes—find the perfect fit for your transformation.">
+  <meta name="keywords" content="Leadership Programmes, Business Training, Development Courses, Professional Growth">
+  <meta property="og:title" content="Our Programmes - IMPACT Global Academy">
+  <meta property="og:description" content="Transform your leadership through our premium, intentional programmes designed for ambitious leaders.">
+  <title>Programmes - IMPACT Global Academy</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body data-page="programmes">
+  <!-- Notification Container -->
+  <div id="notificationContainer" style="position: fixed; top: var(--spacing-xl); right: var(--spacing-xl); z-index: 3000; max-width: 400px;"></div>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="hidden" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    gap: var(--spacing-lg);
+    color: var(--white);
+    font-weight: 600;
+  "></div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <a href="/" class="logo">
+        <div class="logo-icon">I.G.A</div>
+        <span>IMPACT Global</span>
+      </a>
+
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/programmes.html">Programmes</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-buttons">
+        <a href="/login.html" class="btn btn-outline btn-sm">Sign In</a>
+        <a href="/register.html" class="btn btn-primary btn-sm">Create Account</a>
+      </div>
+
+      <button class="mobile-menu-btn">☰</button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Our Programmes</h1>
+          <p>Transformational learning designed for ambitious leaders at every stage of their journey</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter & Search Section -->
+    <section class="section section-light">
+      <div class="container">
+        <div class="card">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); margin-bottom: var(--spacing-lg);">
+            <div>
+              <label for="categoryFilter" style="display: block; font-weight: 600; margin-bottom: var(--spacing-sm);">Filter by Category</label>
+              <select id="categoryFilter" onchange="filterByCategory(this.value)" style="width: 100%; padding: var(--spacing-md); border: 2px solid var(--gray-200); border-radius: var(--radius-lg); font-size: var(--font-size-base);">
+                <option value="">All Categories</option>
+                <option value="LAP">Leadership Acceleration Program</option>
+                <option value="CAP">Campus Activation Program</option>
+                <option value="BAP">Business Acceleration Program</option>
+                <option value="SPECIALIZED">Specialized Programmes</option>
+                <option value="MAP">Mission & Ministry Programs</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="durationFilter" style="display: block; font-weight: 600; margin-bottom: var(--spacing-sm);">Filter by Duration</label>
+              <select id="durationFilter" onchange="filterByDuration(this.value)" style="width: 100%; padding: var(--spacing-md); border: 2px solid var(--gray-200); border-radius: var(--radius-lg); font-size: var(--font-size-base);">
+                <option value="">All Durations</option>
+                <option value="short">Short (1-4 weeks)</option>
+                <option value="medium">Medium (5-8 weeks)</option>
+                <option value="long">Long (9+ weeks)</option>
+              </select>
+            </div>
+          </div>
+
+          <form id="searchForm" onsubmit="handleSearchForm(event)" style="display: flex; gap: var(--spacing-lg);">
+            <input 
+              type="text" 
+              id="searchInput"
+              name="search" 
+              placeholder="Search programmes by name or description..."
+              style="flex: 1; padding: var(--spacing-md); border: 2px solid var(--gray-200); border-radius: var(--radius-lg); font-size: var(--font-size-base);"
+            >
+            <button type="submit" class="btn btn-primary">Search</button>
+            <button type="button" class="btn btn-ghost" onclick="resetFilters()">Reset Filters</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programme Categories Overview -->
+    <section class="section">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: var(--spacing-3xl);">Programme Categories</h2>
+
+        <div class="grid grid-5" style="margin-bottom: var(--spacing-3xl);">
+          <div class="card text-center" style="cursor: pointer; transition: all var(--transition-fast);" onclick="filterByCategory('LAP')">
+            <h3 style="color: var(--secondary-dark); margin-bottom: var(--spacing-md);">LAP</h3>
+            <p style="font-size: var(--font-size-sm);">Leadership Acceleration</p>
+            <p style="font-size: var(--font-size-xs); color: var(--gray-600);">6 weeks</p>
+          </div>
+
+          <div class="card text-center" style="cursor: pointer; transition: all var(--transition-fast);" onclick="filterByCategory('CAP')">
+            <h3 style="color: var(--secondary-dark); margin-bottom: var(--spacing-md);">CAP</h3>
+            <p style="font-size: var(--font-size-sm);">Campus Activation</p>
+            <p style="font-size: var(--font-size-xs); color: var(--gray-600);">4 weeks</p>
+          </div>
+
+          <div class="card text-center" style="cursor: pointer; transition: all var(--transition-fast);" onclick="filterByCategory('BAP')">
+            <h3 style="color: var(--secondary-dark); margin-bottom: var(--spacing-md);">BAP</h3>
+            <p style="font-size: var(--font-size-sm);">Business Acceleration</p>
+            <p style="font-size: var(--font-size-xs); color: var(--gray-600);">8 weeks</p>
+          </div>
+
+          <div class="card text-center" style="cursor: pointer; transition: all var(--transition-fast);" onclick="filterByCategory('SPECIALIZED')">
+            <h3 style="color: var(--secondary-dark); margin-bottom: var(--spacing-md);">🎯</h3>
+            <p style="font-size: var(--font-size-sm);">Specialized</p>
+            <p style="font-size: var(--font-size-xs); color: var(--gray-600);">Varies</p>
+          </div>
+
+          <div class="card text-center" style="cursor: pointer; transition: all var(--transition-fast);" onclick="filterByCategory('MAP')">
+            <h3 style="color: var(--secondary-dark); margin-bottom: var(--spacing-md);">MAP</h3>
+            <p style="font-size: var(--font-size-sm);">Mission & Ministry</p>
+            <p style="font-size: var(--font-size-xs); color: var(--gray-600);">Varies</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programmes Grid -->
+    <section class="section section-light">
+      <div class="container">
+        <h2 style="margin-bottom: var(--spacing-2xl);">
+          <span id="resultCount">Loading programmes...</span>
+        </h2>
+
+        <div id="programmesGrid" class="grid grid-3">
+          <!-- Programmes loaded by JavaScript -->
+          <div class="card skeleton" style="height: 400px;"></div>
+          <div class="card skeleton" style="height: 400px;"></div>
+          <div class="card skeleton" style="height: 400px;"></div>
+          <div class="card skeleton" style="height: 400px;"></div>
+          <div class="card skeleton" style="height: 400px;"></div>
+          <div class="card skeleton" style="height: 400px;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section">
+      <div class="container-sm">
+        <div class="card" style="text-align: center; border: 2px solid var(--secondary-dark);">
+          <h2 style="color: var(--secondary-dark); margin-bottom: var(--spacing-lg);">Not Sure Which Programme Is Right for You?</h2>
+          <p style="font-size: var(--font-size-lg); margin-bottom: var(--spacing-2xl);">Schedule a free consultation with our team to discuss your goals and find the perfect programme match.</p>
+          
+          <div style="display: flex; gap: var(--spacing-lg); justify-content: center; flex-wrap: wrap;">
+            <a href="/contact.html" class="btn btn-primary btn-lg">Schedule Consultation</a>
+            <a href="/about.html" class="btn btn-secondary btn-lg">Learn More About Our Approach</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h3>About IMPACT</h3>
+        <p>Equipping Leaders for Global Transformation through premium, intentional leadership development programmes.</p>
+        <div class="social-links">
+          <a href="#linkedin" title="LinkedIn">f</a>
+          <a href="#twitter" title="Twitter">𝕏</a>
+          <a href="#facebook" title="Facebook">f</a>
+          <a href="#instagram" title="Instagram">📷</a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Platform</h3>
+        <ul>
+          <li><a href="/programmes.html">Programmes</a></li>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Learning</h3>
+        <ul>
+          <li><a href="/programmes.html">All Programmes</a></li>
+          <li><a href="/resources">Learning Resources</a></li>
+          <li><a href="/impact-stories">Impact Stories</a></li>
+          <li><a href="/events">Events</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Collaborate</h3>
+        <ul>
+          <li><a href="/partnerships">Partnerships</a></li>
+          <li><a href="/organisations">For Organizations</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/support">Support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:info@impactglobalacademy.com">info@impactglobalacademy.com</a></li>
+          <li><a href="tel:+2348000000000">+234 800 000 0000</a></li>
+          <li><p>Lagos, Nigeria</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-links">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/cookies.html">Cookie Policy</a>
+      </div>
+      <p>&copy; 2024 IMPACT Global Academy. All rights reserved. CAC No: 8558412</p>
+    </div>
+  </footer>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js"></script>
+
+  <!-- Configuration & APIs -->
+  <script src="/config.js"></script>
+  <script src="/api.js"></script>
+  <script src="/script.js"></script>
+
+  <script>
+    /**
+     * Filter programmes by category
+     */
+    function filterByCategory(category) {
+      const filtered = category ? 
+        allProgrammes.filter(p => p.category === category) : 
+        allProgrammes;
+      renderProgrammesGrid(filtered);
+      updateResultCount(filtered);
+    }
+
+    /**
+     * Filter programmes by duration
+     */
+    function filterByDuration(duration) {
+      let filtered = allProgrammes;
+      
+      if (duration === 'short') {
+        filtered = allProgrammes.filter(p => p.durationWeeks <= 4);
+      } else if (duration === 'medium') {
+        filtered = allProgrammes.filter(p => p.durationWeeks >= 5 && p.durationWeeks <= 8);
+      } else if (duration === 'long') {
+        filtered = allProgrammes.filter(p => p.durationWeeks > 8);
+      }
+      
+      renderProgrammesGrid(filtered);
+      updateResultCount(filtered);
+    }
+
+    /**
+     * Reset all filters
+     */
+    function resetFilters() {
+      document.getElementById('categoryFilter').value = '';
+      document.getElementById('durationFilter').value = '';
+      document.getElementById('searchInput').value = '';
+      renderProgrammesGrid(allProgrammes);
+      updateResultCount(allProgrammes);
+    }
+
+    /**
+     * Update result count
+     */
+    function updateResultCount(data) {
+      const count = data.length;
+      const text = count === 1 ? '1 Programme Found' : `${count} Programmes Found`;
+      document.getElementById('resultCount').textContent = text;
+    }
+
+    // Load programmes on page load
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadProgrammes();
+      if (allProgrammes.length > 0) {
+        updateResultCount(allProgrammes);
+      }
+    });
+  </script>
+</body>
+</html>

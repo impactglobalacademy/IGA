@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>My Profile - IMPACT Global Academy</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body data-page="profile">
+  <!-- Notification Container -->
+  <div id="notificationContainer" style="position: fixed; top: var(--spacing-xl); right: var(--spacing-xl); z-index: 3000; max-width: 400px;"></div>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="hidden" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    gap: var(--spacing-lg);
+    color: var(--white);
+    font-weight: 600;
+  "></div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <a href="/" class="logo">
+        <div class="logo-icon">I.G.A</div>
+        <span>IMPACT Global</span>
+      </a>
+
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/programmes.html">Programmes</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-buttons">
+        <a href="/dashboard.html" class="btn btn-outline btn-sm">Dashboard</a>
+        <button onclick="handleLogout()" class="btn btn-primary btn-sm">Sign Out</button>
+      </div>
+
+      <button class="mobile-menu-btn">☰</button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main style="min-height: 80vh;">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>My Profile</h1>
+          <p>Manage your account settings and personal information</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Profile Content -->
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-3" style="gap: var(--spacing-3xl);">
+          <!-- Sidebar -->
+          <div>
+            <!-- Profile Card -->
+            <div class="card" style="text-align: center;">
+              <div id="avatarContainer" style="width: 100px; height: 100px; border-radius: 50%; background-color: var(--primary-100); margin: 0 auto var(--spacing-lg); display: flex; align-items: center; justify-content: center; font-size: 40px;">
+                👤
+              </div>
+
+              <h2 id="profileName" style="margin-bottom: var(--spacing-sm);">Loading...</h2>
+              <p id="profileEmail" style="color: var(--gray-600); margin-bottom: var(--spacing-lg);">-</p>
+
+              <div style="background-color: var(--light); padding: var(--spacing-lg); border-radius: var(--radius-lg); margin-bottom: var(--spacing-lg);">
+                <p style="font-size: var(--font-size-sm); color: var(--gray-600);">Member since</p>
+                <p id="memberSince" style="font-weight: 600;">-</p>
+              </div>
+
+              <button onclick="handleLogout()" class="btn btn-danger btn-lg" style="width: 100%;">Sign Out</button>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="card" style="margin-top: var(--spacing-lg);">
+              <h3 style="margin-bottom: var(--spacing-lg);">Quick Links</h3>
+              
+              <a href="/dashboard.html" class="btn btn-ghost btn-lg" style="width: 100%; display: block; text-align: center; margin-bottom: var(--spacing-md);">
+                ← Back to Dashboard
+              </a>
+
+              <a href="/programmes.html" class="btn btn-outline btn-lg" style="width: 100%; display: block; text-align: center;">
+                Browse Programmes
+              </a>
+            </div>
+          </div>
+
+          <!-- Main Content -->
+          <div style="grid-column: 2 / 4;">
+            <!-- Edit Profile Form -->
+            <div class="card" style="margin-bottom: var(--spacing-2xl);">
+              <h2 style="margin-bottom: var(--spacing-lg);">Personal Information</h2>
+
+              <form id="profileForm">
+                <div class="form-group">
+                  <label for="fullName">Full Name</label>
+                  <input type="text" id="fullName" name="fullName" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input type="email" id="email" name="email" disabled style="background-color: var(--light); cursor: not-allowed;">
+                  <p style="font-size: var(--font-size-sm); color: var(--gray-600); margin-top: var(--spacing-sm);">Email cannot be changed. <a href="/contact.html">Contact support</a> if you need to update it.</p>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" id="phone" name="phone" placeholder="+234 800 000 0000">
+                </div>
+
+                <div class="form-group">
+                  <label for="bio">Bio</label>
+                  <textarea id="bio" name="bio" placeholder="Tell us about yourself and your leadership journey..." style="min-height: 120px;"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg">Save Changes</button>
+              </form>
+            </div>
+
+            <!-- Security Settings -->
+            <div class="card" style="margin-bottom: var(--spacing-2xl);">
+              <h2 style="margin-bottom: var(--spacing-lg);">Security</h2>
+
+              <div style="padding-bottom: var(--spacing-lg); border-bottom: 1px solid var(--gray-200); margin-bottom: var(--spacing-lg);">
+                <h3 style="margin-bottom: var(--spacing-md);">Change Password</h3>
+                <p style="color: var(--gray-600); margin-bottom: var(--spacing-lg);">Update your password to keep your account secure.</p>
+                
+                <form id="passwordForm" style="max-width: 400px;">
+                  <div class="form-group">
+                    <label for="currentPassword">Current Password</label>
+                    <input type="password" id="currentPassword" name="currentPassword" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" id="newPassword" name="newPassword" required placeholder="At least 6 characters">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Update Password</button>
+                </form>
+              </div>
+
+              <div>
+                <h3 style="margin-bottom: var(--spacing-md);">Two-Factor Authentication</h3>
+                <p style="color: var(--gray-600); margin-bottom: var(--spacing-lg);">Add an extra layer of security to your account with two-factor authentication.</p>
+                <button class="btn btn-outline btn-lg" disabled style="cursor: not-allowed;">
+                  Coming Soon
+                </button>
+              </div>
+            </div>
+
+            <!-- Preferences -->
+            <div class="card" style="margin-bottom: var(--spacing-2xl);">
+              <h2 style="margin-bottom: var(--spacing-lg);">Preferences</h2>
+
+              <div style="margin-bottom: var(--spacing-lg);">
+                <label style="display: flex; align-items: center; gap: var(--spacing-md); cursor: pointer;">
+                  <input type="checkbox" id="emailNotifications" checked>
+                  <span>
+                    <strong>Email Notifications</strong>
+                    <p style="font-size: var(--font-size-sm); color: var(--gray-600);">Receive updates about your programmes and new content</p>
+                  </span>
+                </label>
+              </div>
+
+              <div style="margin-bottom: var(--spacing-lg);">
+                <label style="display: flex; align-items: center; gap: var(--spacing-md); cursor: pointer;">
+                  <input type="checkbox" id="weeklyDigest" checked>
+                  <span>
+                    <strong>Weekly Digest</strong>
+                    <p style="font-size: var(--font-size-sm); color: var(--gray-600);">Get a summary of your learning progress every week</p>
+                  </span>
+                </label>
+              </div>
+
+              <div style="margin-bottom: var(--spacing-lg);">
+                <label style="display: flex; align-items: center; gap: var(--spacing-md); cursor: pointer;">
+                  <input type="checkbox" id="communityUpdates">
+                  <span>
+                    <strong>Community Updates</strong>
+                    <p style="font-size: var(--font-size-sm); color: var(--gray-600);">Hear about community events and discussions</p>
+                  </span>
+                </label>
+              </div>
+
+              <button type="button" onclick="savePreferences()" class="btn btn-primary">Save Preferences</button>
+            </div>
+
+            <!-- Danger Zone -->
+            <div class="card" style="border-color: var(--error); border-width: 2px;">
+              <h2 style="color: var(--error); margin-bottom: var(--spacing-lg);">Danger Zone</h2>
+
+              <p style="color: var(--gray-600); margin-bottom: var(--spacing-lg);">These actions cannot be undone. Please proceed with caution.</p>
+
+              <button type="button" onclick="handleDeleteAccount()" class="btn btn-danger btn-lg">
+                Delete My Account
+              </button>
+
+              <p style="font-size: var(--font-size-sm); color: var(--gray-600); margin-top: var(--spacing-md);">
+                Your account and all associated data will be permanently deleted. This action cannot be reversed.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h3>About IMPACT</h3>
+        <p>Equipping Leaders for Global Transformation</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Platform</h3>
+        <ul>
+          <li><a href="/programmes.html">Programmes</a></li>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Account</h3>
+        <ul>
+          <li><a href="/dashboard.html">Dashboard</a></li>
+          <li><a href="/profile.html">My Profile</a></li>
+          <li><a href="#" onclick="handleLogout()">Sign Out</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms of Service</a></li>
+          <li><a href="/contact.html">Support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:info@impactglobalacademy.com">info@impactglobalacademy.com</a></li>
+          <li><a href="tel:+2348000000000">+234 800 000 0000</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024 IMPACT Global Academy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js"></script>
+
+  <!-- Configuration & APIs -->
+  <script src="/config.js"></script>
+  <script src="/api.js"></script>
+  <script src="/script.js"></script>
+
+  <script>
+    let currentUser = null;
+
+    /**
+     * Load profile on page load
+     */
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const user = await getCurrentUser();
+        if (!user) {
+          showNotification('Please sign in to view your profile', 'info');
+          setTimeout(() => {
+            window.location.href = '/login.html';
+          }, 1500);
+          return;
+        }
+
+        currentUser = user;
+        loadProfileData(user);
+      } catch (error) {
+        console.error('Profile error:', error);
+        showNotification('Error loading profile', 'error');
+      }
+    });
+
+    /**
+     * Load profile data
+     */
+    function loadProfileData(user) {
+      document.getElementById('profileName').textContent = user.fullName || user.email;
+      document.getElementById('profileEmail').textContent = user.email;
+      document.getElementById('fullName').value = user.fullName || '';
+      document.getElementById('email').value = user.email;
+      document.getElementById('phone').value = user.phone || '';
+      document.getElementById('bio').value = user.bio || '';
+
+      // Format member since date
+      if (user.createdAt) {
+        const date = user.createdAt.toDate ? user.createdAt.toDate() : new Date(user.createdAt);
+        document.getElementById('memberSince').textContent = new Intl.DateTimeFormat('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        }).format(date);
+      }
+    }
+
+    /**
+     * Handle profile form submission
+     */
+    document.getElementById('profileForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      try {
+        showLoadingState('Saving profile...');
+
+        const data = {
+          fullName: document.getElementById('fullName').value,
+          phone: document.getElementById('phone').value,
+          bio: document.getElementById('bio').value
+        };
+
+        const result = await updateUserProfile(currentUser.uid, data);
+
+        if (result.success) {
+          showNotification('Profile updated successfully', 'success');
+          currentUser = { ...currentUser, ...data };
+        } else {
+          showNotification(result.error, 'error');
+        }
+      } catch (error) {
+        console.error('Error updating profile:', error);
+        showNotification('Error saving profile', 'error');
+      } finally {
+        hideLoadingState();
+      }
+    });
+
+    /**
+     * Handle password change
+     */
+    document.getElementById('passwordForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const newPassword = document.getElementById('newPassword').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (newPassword !== confirmPassword) {
+        showNotification('Passwords do not match', 'error');
+        return;
+      }
+
+      if (newPassword.length < 6) {
+        showNotification('Password must be at least 6 characters', 'error');
+        return;
+      }
+
+      try {
+        showLoadingState('Updating password...');
+
+        // This would typically be handled by a backend function
+        showNotification('Password change feature coming soon', 'info');
+      } catch (error) {
+        console.error('Error changing password:', error);
+        showNotification('Error changing password', 'error');
+      } finally {
+        hideLoadingState();
+      }
+    });
+
+    /**
+     * Save preferences
+     */
+    function savePreferences() {
+      try {
+        showLoadingState('Saving preferences...');
+
+        const preferences = {
+          emailNotifications: document.getElementById('emailNotifications').checked,
+          weeklyDigest: document.getElementById('weeklyDigest').checked,
+          communityUpdates: document.getElementById('communityUpdates').checked
+        };
+
+        // Store in localStorage for now
+        localStorage.setItem('userPreferences', JSON.stringify(preferences));
+
+        showNotification('Preferences saved successfully', 'success');
+      } catch (error) {
+        console.error('Error saving preferences:', error);
+        showNotification('Error saving preferences', 'error');
+      } finally {
+        hideLoadingState();
+      }
+    }
+
+    /**
+     * Handle account deletion
+     */
+    function handleDeleteAccount() {
+      if (!confirm('Are you absolutely sure you want to delete your account? This cannot be undone.')) {
+        return;
+      }
+
+      if (!confirm('All your data will be permanently deleted. This is your last chance to cancel.')) {
+        return;
+      }
+
+      showNotification('Account deletion feature coming soon', 'info');
+    }
+  </script>
+</body>
+</html>

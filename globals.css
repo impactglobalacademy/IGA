@@ -1,0 +1,249 @@
+@import 'tailwindcss';
+
+:root {
+  /* Primary Colors */
+  --color-primary-50: #f0f4f9;
+  --color-primary-100: #d8e3f1;
+  --color-primary-200: #b1c7e3;
+  --color-primary-300: #8aabd5;
+  --color-primary-400: #638fc7;
+  --color-primary-500: #3c73b9;
+  --color-primary-600: #2d5a96;
+  --color-primary-700: #1f4173;
+  --color-primary-800: #162d4a;
+  --color-primary-900: #0d1a2a;
+  --color-primary-950: #1a2a40;
+
+  /* Secondary Colors */
+  --color-secondary-50: #fffbf0;
+  --color-secondary-100: #fef5dd;
+  --color-secondary-200: #fee9bb;
+  --color-secondary-300: #fdd899;
+  --color-secondary-400: #f9c870;
+  --color-secondary-500: #f0b848;
+  --color-secondary-600: #d8963a;
+  --color-secondary-700: #b8752e;
+  --color-secondary-800: #985a28;
+  --color-secondary-900: #7a4620;
+  --color-secondary-950: #d4a574;
+
+  /* Fonts */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  color: #0f172a;
+  background-color: #ffffff;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Selection */
+::selection {
+  background-color: #1a2a40;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: #1a2a40;
+  color: #ffffff;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Buttons */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* Form Elements */
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.75rem;
+}
+
+/* Code Blocks */
+code {
+  font-family: 'Courier New', monospace;
+  background-color: #f1f5f9;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+}
+
+pre {
+  background-color: #f1f5f9;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Focus Visible */
+:focus-visible {
+  outline: 2px solid #1a2a40;
+  outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.4s ease-out;
+}
+
+/* Utility Classes */
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background-color: white;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  button {
+    display: none;
+  }
+}
